@@ -1,0 +1,16 @@
+services:
+  db:
+    image: mysql:8.4
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: todo
+    volumes: [dbdata:/var/lib/mysql]
+  app:
+    build: .
+    depends_on: [db]
+    environment:
+      DB_DSN: root:root@tcp(db:3306)/todo?parseTime=true&charset=utf8mb4
+      STATIC_DIR: /app/static
+    ports: ["8080:8080"]
+volumes:
+  dbdata:
