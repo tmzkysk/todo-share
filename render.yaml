@@ -1,0 +1,12 @@
+# Render Blueprint: GitHubリポジトリ直下に置いて「New > Blueprint」から作成
+services:
+  - type: web
+    name: todo-share
+    runtime: docker
+    plan: free
+    healthCheckPath: /
+    envVars:
+      - key: DB_DSN      # 作成時に入力を求められる（Aivenの接続情報）
+        sync: false
+      - key: DB_CA_PEM   # 作成時に入力を求められる（Aivenのca.pemの中身）
+        sync: false
